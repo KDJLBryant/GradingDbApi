@@ -32,7 +32,10 @@ namespace GradingDbApi.Controllers
         [HttpPost]
         public void CreateStudent([FromBody]Student student)
         {
-            _repository.CreateStudent(student);
+            if (ModelState.IsValid)
+            {
+                _repository.CreateStudent(student);
+            }
         }
     }
 }

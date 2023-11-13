@@ -32,7 +32,10 @@ namespace GradingDbApi.Controllers
         [HttpPost]
         public void CreateMark([FromBody]Mark mark)
         {
-            _repository.CreateMark(mark);
+            if (ModelState.IsValid)
+            {
+                _repository.CreateMark(mark);
+            }
         }
     }
 }

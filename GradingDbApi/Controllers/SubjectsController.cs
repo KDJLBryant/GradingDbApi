@@ -1,12 +1,14 @@
 ﻿using GradingDB.Models;
 using GradingDbApi.Data.Interface;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
+using System.Web.WebPages.Html;
 
 namespace GradingDbApi.Controllers
 {
     [Route("api/subjects")]
     [Controller]
-    public class SubjectsController
+    public class SubjectsController : ControllerBase
     {
         private readonly IRepository _repository;
 
@@ -32,7 +34,10 @@ namespace GradingDbApi.Controllers
         [HttpPost]
         public void CreateSubject([FromBody]Subject subject)
         {
-            _repository.CreateSubject(subject);
+            if (ModelState.IsValid)
+            {
+                _repository.CreateSubject(subject);
+            }
         }
     }
 }

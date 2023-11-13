@@ -6,7 +6,7 @@ namespace GradingDbApi.Controllers
 {
     [Route("api/teachers")]
     [Controller]
-    public class TeachersController
+    public class TeachersController : ControllerBase
     {
         private readonly IRepository _repository;
 
@@ -32,7 +32,10 @@ namespace GradingDbApi.Controllers
         [HttpPost]
         public void CreateTeacher([FromBody]Teacher teacher)
         {
-            _repository.CreateTeacher(teacher);
+            if (ModelState.IsValid)
+            {
+                _repository.CreateTeacher(teacher);
+            }
         }
     }
 }

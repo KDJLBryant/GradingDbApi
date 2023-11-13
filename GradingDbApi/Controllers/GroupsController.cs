@@ -32,7 +32,10 @@ namespace GradingDbApi.Controllers
         [HttpPost]
         public void CreateGroup([FromBody]Group group)
         {
-            _repository.CreateGroup(group);
+            if (ModelState.IsValid)
+            {
+                _repository.CreateGroup(group);
+            }
         }
     }
 }
