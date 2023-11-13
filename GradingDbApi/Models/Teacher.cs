@@ -12,12 +12,12 @@ namespace GradingDB.Models
     {
         public int Id { get; set; }
 
-        [StringLength(256)]
+        [Required]
+        [StringLength(255)]
         public string FirstName { get; set; }
-
-        [StringLength(256)]
+        [Required]
+        [StringLength(255)]
         public string LastName { get; set; }
-
         public List<Subject> Subjects { get; } = new();
     }
 }

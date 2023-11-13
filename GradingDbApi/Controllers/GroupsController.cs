@@ -1,5 +1,5 @@
 ﻿using GradingDB.Models;
-using GradingDbApi.Data;
+using GradingDbApi.Data.Interface;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GradingDbApi.Controllers
@@ -8,11 +8,11 @@ namespace GradingDbApi.Controllers
     [Controller]
     public class GroupsController : ControllerBase
     {
-        private readonly SchoolRepository _repository;
+        private readonly IRepository _repository;
 
-        public GroupsController()
+        public GroupsController(IRepository repository)
         {
-            _repository = new SchoolRepository();
+            _repository = repository;
         }
 
         [HttpGet]
@@ -26,6 +26,13 @@ namespace GradingDbApi.Controllers
         public Group GetGroup(int id)
         {
             return _repository.GetGroup(id);
+        }
+
+        // Create
+        [HttpPost]
+        public void CreateGroup([FromBody]Group group)
+        {
+            _repository.CreateGroup(group);
         }
     }
 }

@@ -1,8 +1,9 @@
 ﻿using GradingDB.Data;
 using GradingDB.Models;
 using GradingDbApi.Controllers;
+using GradingDbApi.Data.Interface;
 
-namespace GradingDbApi.Data
+namespace GradingDbApi.Data.Repository
 {
     public class SchoolRepository : IRepository
     {
@@ -11,6 +12,51 @@ namespace GradingDbApi.Data
         public SchoolRepository()
         {
             _dbContext = new GradingContext();
+        }
+
+        public void CreateGroup(Group group)
+        {
+            using (var db = _dbContext)
+            {
+                db.groups.Add(group);
+                db.SaveChanges();
+            }
+        }
+
+        public void CreateMark(Mark mark)
+        {
+            using (var db = _dbContext)
+            {
+                db.marks.Add(mark);
+                db.SaveChanges();
+            }
+        }
+
+        public void CreateStudent(Student student)
+        {
+            using (var db = _dbContext)
+            {
+                db.students.Add(student);
+                db.SaveChanges();
+            }
+        }
+
+        public void CreateSubject(Subject subject)
+        {
+            using (var db = _dbContext)
+            {
+                db.subjects.Add(subject);
+                db.SaveChanges();
+            }
+        }
+
+        public void CreateTeacher(Teacher teacher)
+        {
+            using (var db = _dbContext)
+            {
+                db.teachers.Add(teacher);
+                db.SaveChanges();
+            }
         }
 
         public Group GetGroup(int id)

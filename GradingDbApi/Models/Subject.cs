@@ -12,7 +12,8 @@ namespace GradingDB.Models
     {
         public int Id { get; set; }
 
-        [StringLength(256)]
+        [Required]
+        [StringLength(255)]
         public string Title { get; set; }
         public List<Teacher> Teachers { get; } = new();
         public List<Mark> Marks { get; } = new();
