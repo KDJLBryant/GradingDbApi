@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace GradingDbApi.Controllers
 {
+    [Route("api/groups")]
+    [Controller]
     public class GroupsController : ControllerBase
     {
         private readonly SchoolRepository _repository;
