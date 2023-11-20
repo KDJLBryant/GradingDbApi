@@ -16,25 +16,108 @@ namespace GradingDbApi.Controllers
         }
 
         [HttpGet]
-        public List<Mark> GetMarks()
+        public ActionResult<List<Mark>> GetMarks()
         {
-            return _repository.GetMarks();
+            try
+            {
+                return Ok(_repository.GetMarks());
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
         }
 
         [HttpGet]
         [Route("{id}")]
-        public Mark GetMark(int id)
+        public ActionResult<Mark> GetMark(int id)
         {
-            return _repository.GetMark(id);
+            try
+            {
+
+                Mark m = _repository.GetMark(id);
+
+                if (m == null)
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    return Ok(m);
+                }
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
         }
 
         // Create
         [HttpPost]
-        public void CreateMark([FromBody]Mark mark)
+        public IActionResult CreateMark([FromBody]Mark mark)
         {
-            if (ModelState.IsValid)
+            try
             {
-                _repository.CreateMark(mark);
+                if (ModelState.IsValid)
+                {
+                    _repository.CreateMark(mark);
+                    return CreatedAtAction(nameof(GetMark), new { id = mark.Id }, mark);
+                }
+                else
+                {
+                    return BadRequest();
+                }
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
+
+        [HttpPut]
+        [Route("{id}")]
+        public IActionResult UpdateMark(int id, [FromBody] Mark mark)
+        {
+            try
+            {
+                Mark updatedMark = _repository.UpdateMark(id, mark);
+
+                if (updatedMark == null)
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    return CreatedAtAction(nameof(GetMark), new { id = updatedMark.Id }, updatedMark);
+                }
+            }
+            catch (Exception)
+            {
+                return StatusCode(500);
+            }
+        }
+
+        [HttpDelete]
+        [Route("{id}")]
+        public ActionResult<Mark> DeleteMark(int id)
+        {
+
+            try
+            {
+                bool deleteSuccess = _repository.DeleteMark(id);
+
+                if (deleteSuccess)
+                {
+                    return NoContent();
+                }
+                else
+                {
+                    return BadRequest();
+                }
+            }
+            catch (Exception)
+            {
+                return StatusCode(500);
             }
         }
     }

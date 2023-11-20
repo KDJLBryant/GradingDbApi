@@ -21,5 +21,18 @@ namespace GradingDbApi.Data.Interface
         void CreateStudent(Student student);
         void CreateSubject(Subject subject);
         void CreateTeacher(Teacher teacher);
+        // Update
+        Group UpdateGroup(int id, Group group);
+        Mark UpdateMark(int id, Mark mark);
+        Student UpdateStudent(int id, Student student);
+        Subject UpdateSubject(int id, Subject subject);
+        Teacher UpdateTeacher(int id, Teacher teacher);
+        // Delete
+        bool DeleteGroup(int id);
+        bool DeleteMark(int id);
+        bool DeleteStudent(int id);
+        bool DeleteSubject(int id);
+        bool DeleteTeacher(int id);
+
     }
 }

@@ -63,6 +63,31 @@ namespace GradingDbApi.Data.Repository
             throw new NotImplementedException();
         }
 
+        public bool DeleteGroup(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool DeleteMark(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool DeleteStudent(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool DeleteSubject(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool DeleteTeacher(int id)
+        {
+            throw new NotImplementedException();
+        }
+
         public Group GetGroup(int id)
         {
             return Groups.FirstOrDefault(x => x.Id == id);
@@ -111,6 +136,31 @@ namespace GradingDbApi.Data.Repository
         public List<Teacher> GetTeachers()
         {
             return Teachers;
+        }
+
+        public Group UpdateGroup(int id, Group group)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Mark UpdateMark(int id, Mark mark)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Student UpdateStudent(int id, Student student)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Subject UpdateSubject(int id, Subject subject)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Teacher UpdateTeacher(int id, Teacher teacher)
+        {
+            throw new NotImplementedException();
         }
     }
 }
